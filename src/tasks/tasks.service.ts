@@ -11,6 +11,23 @@ export class TasksService {
     return this.tasks;
   }
 
+  getFilterTasks(filterDto): Task[] {
+    const { status, search } = filterDto;
+    let tasks = this.tasks;
+
+    if (status) {
+      tasks = tasks.filter(e => e.status === status);
+    }
+
+    if (search) {
+      tasks = tasks.filter(
+        e => e.title.includes(search) || e.description.includes(search),
+      );
+    }
+
+    return tasks;
+  }
+
   getTaskById(id: string): Task {
     return this.tasks.find(e => e.id === id);
   }
