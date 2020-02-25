@@ -4,6 +4,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TasksModule } from './tasks/tasks.module';
 
 @Module({
-  imports: [TasksModule, MongooseModule.forRoot('mongodb://localhost/nest')],
+  imports: [
+    TasksModule,
+    MongooseModule.forRoot('mongodb://localhost/nest', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
+  ],
 })
 export class AppModule {}
